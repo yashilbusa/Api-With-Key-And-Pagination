@@ -44,6 +44,3 @@ const holidayScehma = new mongoose.Schema({
 const Holiday = mongoose.model('Holiday', holidayScehma);
 
 export default Holiday;
-
-
-    
