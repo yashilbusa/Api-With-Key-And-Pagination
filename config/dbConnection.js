@@ -1,17 +1,17 @@
 import mongoose from "mongoose";
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 
-dotenv.config()
+dotenv.config();
 
 const db = async()=>{
-    mongoose.connect(process.env.url)
+    mongoose.connect(process.env.mongoUrl)
         .then(() => {
             console.log('Connected to MongoDB');
-            console.log(`Server is Running on http://localhost:${process.env.port}`)
+            console.log(`Server is Running on http://localhost:${process.env.port}`);
         })
         .catch((err) => {
             console.error(`Error connecting to MongoDB : ${err}`);
         });
 }
 
-export default db
+export default db;
