@@ -2,7 +2,7 @@ import Holiday from '../models/holiday.js'
 
 const api = process.env.holidayApi;
     
-const create = async () => {
+const postData = async () => {
     const response = await fetch(api);
     const holidayData = response.json();
 
@@ -18,6 +18,6 @@ const findAll = async () => {
     res.send(allHoliday);
 }
 
-const holidayRoute =  { create, findAll }
+const holidayRoute =  { postData, findAll }
 
 module.exports = holidayRoute;
