@@ -1,6 +1,6 @@
 import express from 'express';
 import db from './config/dbConnection.js'
-import router from '../routes/holidayRoutes.js'
+import router from './routes/holidayRoutes.js'
 
 db();
 

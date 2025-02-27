@@ -35,4 +35,4 @@ const holidayScehma = new mongoose.Schema({
 
 const Holiday = mongoose.model('Holiday', holidayScehma);
 
-module.exports = Holiday;
+export default Holiday;

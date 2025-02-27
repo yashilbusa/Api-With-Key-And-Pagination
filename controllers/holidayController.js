@@ -20,4 +20,4 @@ const findAll = async () => {
 
 const holidayRoute =  { postData, findAll }
 
-module.exports = holidayRoute;
+export default holidayRoute;
