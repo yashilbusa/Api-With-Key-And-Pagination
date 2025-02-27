@@ -37,13 +37,24 @@ const postData = async () => {
     }
   };
 
-const findAll = async (req, res) => {
-  try {
-    const allHoliday = await Holiday.find();
-    res.send(allHoliday);
-  } catch (err) {
-    res.status(500).send({ error: 'Failed to fetch holidays' });
-  }
+  const findAll = async (req, res) => {
+    try {
+        let { page } = req.query;
+        page = parseInt(page) || 1;
+        const limit = 10;
+        const skip = (page - 1) * limit;
+
+        const totalDocs = await Holiday.countDocuments();
+        const totalPages = Math.ceil(totalDocs / limit);
+        const holidays = await Holiday.find().skip(skip).limit(limit);
+
+        if (page === 10) {
+            await postData();
+        }
+        res.json({ holidays, totalPages, currentPage: page});
+    } catch (err) {
+        res.status(500).send({ error: 'Failed to fetch holidays' });
+    }
 };
 
 const deleteAll = async (req, res) => {
