@@ -7,15 +7,16 @@ const postData = async () => {
     const holidayData = response.json();
     console.log(response)
 
+    const { name, description, country, date, type, primary_type, canonical_url, urlid, locations, states} = holidayData
     const newData = new Holiday({
-        name:holidayData.name,
+        name, description, country, date, type, primary_type, canonical_url, urlid, locations, states
     })
     newData.save();
 }
 
 const findAll = async (req,res) => {
-    const no_of_docs_each_page = 2; 
-    const current_page_number = 1;
+    // const no_of_docs_each_page = 2; 
+    // const current_page_number = 1;
 
     const allHoliday = await Holiday.find();
 

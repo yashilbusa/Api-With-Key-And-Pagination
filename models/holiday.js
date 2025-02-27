@@ -25,7 +25,7 @@ const holidayScehma = new mongoose.Schema({
             zonetotaloffset:Number
         }
     },
-    // type:[],
+    type:[],
     primary_type:String,
     canonical_url:String,
     urlid:String,
