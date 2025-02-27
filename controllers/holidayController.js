@@ -45,12 +45,9 @@ const postData = async () => {
         const skip = (page - 1) * limit;
 
         const totalDocs = await Holiday.countDocuments();
-        const totalPages = Math.ceil(totalDocs / limit);
+        const totalPages = Math.trunc(totalDocs / limit);
         const holidays = await Holiday.find().skip(skip).limit(limit);
 
-        if (page === 10) {
-            await postData();
-        }
         res.json({ holidays, totalPages, currentPage: page});
     } catch (err) {
         res.status(500).send({ error: 'Failed to fetch holidays' });
