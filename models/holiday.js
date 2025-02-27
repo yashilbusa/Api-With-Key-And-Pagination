@@ -9,7 +9,6 @@ const dateTimeSchema = new mongoose.Schema({
     year:Number,
     month:Number,
     day:Number,
-    year:Number,
     minute:Number,
     second:Number
 })

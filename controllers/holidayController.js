@@ -9,7 +9,7 @@ const postData = async () => {
 
     // const { name, description, country, date, type, primary_type, canonical_url, urlid, locations, states } = holidayData
     
-    // for (let i = 0; i < holidayData.lenght; i++) {
+    // for (let i = 0; i < holidayData.length; i++) {
     //     const newData = new Holiday({
     //         name:holidayData[i]['name'],
     //         description:holidayData[i]['description'], 
