@@ -47,18 +47,3 @@ export default Holiday;
 
 
     
-// for (let i = 0; i < holidayData.lenght; i++) {
-//     const newData = new Holiday({
-//         name:holidayData[i]['name'],
-//         description:holidayData[i]['description'], 
-//         country:holidayData[i]['country'], 
-//         date:holidayData[i]['date'], 
-//         type:holidayData[i]['type'], 
-//         primary_type:holidayData[i]['primary_type'], 
-//         canonical_url:holidayData[i]['canonical_url'], 
-//         urlid:holidayData[i]['urlid'], 
-//         locations:holidayData[i]['locations'], 
-//         states:holidayData[i]['states']
-//     })
-//     newData.save();
-// }
