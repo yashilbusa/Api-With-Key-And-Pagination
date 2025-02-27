@@ -7,18 +7,19 @@ const postData = async () => {
     const holidayData = response.json();
     console.log(response)
 
-    const { name, description, country, date, type, primary_type, canonical_url, urlid, locations, states } = holidayData
+    // const { name, description, country, date, type, primary_type, canonical_url, urlid, locations, states } = holidayData
+    
     const newData = new Holiday({
         name:holidayData.name, 
-        description, 
-        country, 
-        date, 
-        type, 
-        primary_type, 
-        canonical_url, 
-        urlid, 
-        locations, 
-        states
+        description:holidayData.description, 
+        country:holidayData.country, 
+        date:holidayData.date, 
+        type:holidayData.type, 
+        primary_type:holidayData.primary_type, 
+        canonical_url:holidayData.canonical_url, 
+        urlid:holidayData.urlid, 
+        locations:holidayData.locations, 
+        states:holidayData.states
     })
     newData.save();
 }
