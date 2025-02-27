@@ -25,8 +25,6 @@ const postData = async () => {
 }
 
 const findAll = async (req,res) => {
-    // const no_of_docs_each_page = 2; 
-    // const current_page_number = 1;
 
     const allHoliday = await Holiday.find();
 
