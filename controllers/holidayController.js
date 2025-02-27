@@ -9,7 +9,16 @@ const postData = async () => {
 
     const { name, description, country, date, type, primary_type, canonical_url, urlid, locations, states } = holidayData
     const newData = new Holiday({
-        name, description, country, date, type, primary_type, canonical_url, urlid, locations, states
+        name:holidayData.name, 
+        description, 
+        country, 
+        date, 
+        type, 
+        primary_type, 
+        canonical_url, 
+        urlid, 
+        locations, 
+        states
     })
     newData.save();
 }
