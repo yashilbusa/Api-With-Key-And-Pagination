@@ -7,7 +7,6 @@ const db = async()=>{
     mongoose.connect(process.env.mongoUrl)
         .then(() => {
             console.log('Connected to MongoDB');
-            console.log(`Server is Running on http://localhost:${process.env.port}`);
         })
         .catch((err) => {
             console.error(`Error connecting to MongoDB : ${err}`);

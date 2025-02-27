@@ -2,7 +2,7 @@ import Holiday from '../models/holiday.js'
 
 const api = process.env.holidayApi;
     
-const postData = async () => {
+const postData = async (req,res) => {
     const response = await fetch(api);
     const holidayData = response.json();
 
@@ -13,11 +13,17 @@ const postData = async () => {
     newData.save();
 }
 
-const findAll = async () => {
-    const allHoliday = await Holiday.find();
+const findAll = async (req,res) => {
+    const allHoliday = await Holiday.aggregate([
+        
+    ]);
     res.send(allHoliday);
 }
 
-const holidayRoute =  { postData, findAll }
+const deleteAll = async (req,res) => {
+    await Holiday.deleteMany();
+}
+
+const holidayRoute =  { postData, findAll, deleteAll }
 
 export default holidayRoute;
