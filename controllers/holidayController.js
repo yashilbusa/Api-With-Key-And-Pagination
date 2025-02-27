@@ -5,7 +5,7 @@ const api = process.env.holidayApi;
 const postData = async () => {
     const response = await fetch(api);
     const holidayData = response.json();
-    console.log(response)
+    console.log(holidayData)
 
     const { name, description, country, date, type, primary_type, canonical_url, urlid, locations, states} = holidayData
     const newData = new Holiday({
