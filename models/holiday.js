@@ -33,4 +33,6 @@ const holidayScehma = new mongoose.Schema({
     states:String
 });
 
-export const Holiday = mongoose.model('Holiday', holidayScehma);
+const Holiday = mongoose.model('Holiday', holidayScehma);
+
+module.exports = Holiday
