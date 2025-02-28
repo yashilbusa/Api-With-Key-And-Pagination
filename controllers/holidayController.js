@@ -39,9 +39,9 @@ const postData = async () => {
 
   const findAll = async (req, res) => {
     try {
-        let { page } = req.query;
-        page = parseInt(page) || 1;
-        const limit = 10;
+        let page = Number(req.query.page) || 1;
+        let limit = Number(req.query.limit) || 1;
+
         const skip = (page - 1) * limit;
 
         const totalDocs = await Holiday.countDocuments();
