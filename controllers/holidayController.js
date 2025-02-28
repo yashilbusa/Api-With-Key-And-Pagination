@@ -31,9 +31,9 @@ const postData = async () => {
   
         await newHoliday.save();
       }
-      console.log('Holiday data saved successfully.');
+      console.log('Holiday Data Saved Successfully.');
     } catch (err) {
-      console.error('Error posting data:', err);
+      console.error('Error in Posting data:', err);
     }
   };
 
