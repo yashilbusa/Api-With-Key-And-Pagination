@@ -40,12 +40,12 @@ const postData = async () => {
   const findAll = async (req, res) => {
     try {
         let page = Number(req.query.page) || 1;
-        let limit = Number(req.query.limit) || 10;
+        let limit = Number(req.query.limit) || 5;
 
         const skip = (page - 1) * limit;
 
         const totalDocs = await Holiday.countDocuments();
-        const totalPages = Math.trunc(totalDocs / limit);
+        const totalPages = Math.ceil(totalDocs / limit);
         const holidays = await Holiday.find().skip(skip).limit(limit);
 
         res.json({ holidays, totalPages, currentPage: page});
