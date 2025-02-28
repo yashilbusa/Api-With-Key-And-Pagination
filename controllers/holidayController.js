@@ -45,7 +45,7 @@ const postData = async () => {
         const skip = (page - 1) * limit;
 
         const totalDocs = await Holiday.countDocuments();
-        const totalPages = Math.ceil(totalDocs / limit);
+        const totalPages = Math.trunc(totalDocs / limit);
         const holidays = await Holiday.find().skip(skip).limit(limit);
 
         res.json({ holidays, totalPages, currentPage: page});
