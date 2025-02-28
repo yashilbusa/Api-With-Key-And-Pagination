@@ -1,56 +1,72 @@
-import Holiday from '../models/holiday.js'
+import Holiday from '../models/holiday.js';
 
 const api = process.env.holidayApi;
-    
+
 const postData = async () => {
-    const response = await fetch(api);
-    const holidayData = await response.json();
-    console.log(holidayData)
+    try {
+      const response = await fetch(api);
+      const holidayData = await response.json();
+      
+      console.log(holidayData);
+  
+      const holidays =  holidayData.response.holidays;
+  
+      console.log(holidays);
+  
+      for (let i = 0; i < holidays.length; i++) {
+        const holiday = holidays[i];
+  
+        const newHoliday = new Holiday({
+          name: holiday.name,
+          description: holiday.description,
+          country: holiday.country,
+          date: holiday.date,
+          type: holiday.type,
+          primary_type: holiday.primary_type,
+          canonical_url: holiday.canonical_url,
+          urlid: holiday.urlid,
+          locations: holiday.locations,
+          states: holiday.states,
+        });
+  
+        await newHoliday.save();
+      }
+      console.log('Holiday data saved successfully.');
+    } catch (err) {
+      console.error('Error posting data:', err);
+    }
+  };
 
-    // const { name, description, country, date, type, primary_type, canonical_url, urlid, locations, states } = holidayData
-    
-    // for (let i = 0; i < holidayData.length; i++) {
-    //     const newData = new Holiday({
-    //         name:holidayData[i]['name'],
-    //         description:holidayData[i]['description'], 
-    //         country:holidayData[i]['country'], 
-    //         date:holidayData[i]['date'], 
-    //         type:holidayData[i]['type'], 
-    //         primary_type:holidayData[i]['primary_type'], 
-    //         canonical_url:holidayData[i]['canonical_url'], 
-    //         urlid:holidayData[i]['urlid'], 
-    //         locations:holidayData[i]['locations'], 
-    //         states:holidayData[i]['states']
-    //     })
-    //     newData.save();
-    // }
+  const findAll = async (req, res) => {
+    try {
+        let { page } = req.query;
+        page = parseInt(page) || 1;
+        const limit = 10;
+        const skip = (page - 1) * limit;
 
-    const newData = new Holiday({
-        name:holidayData.name, 
-        description:holidayData.description, 
-        country:holidayData.country, 
-        date:holidayData.date, 
-        type:holidayData.type, 
-        primary_type:holidayData.primary_type, 
-        canonical_url:holidayData.canonical_url, 
-        urlid:holidayData.urlid, 
-        locations:holidayData.locations, 
-        states:holidayData.states
-    })
-    newData.save();
-}
+        const totalDocs = await Holiday.countDocuments();
+        const totalPages = Math.trunc(totalDocs / limit);
+        const holidays = await Holiday.find().skip(skip).limit(limit);
 
-const findAll = async (req,res) => {
+        res.json({ holidays, totalPages, currentPage: page});
+    } catch (err) {
+        res.status(500).send({ error: 'Failed to fetch holidays' });
+    }
+};
 
-    const allHoliday = await Holiday.find();
-
-    res.send(allHoliday);
-}
-
-const deleteAll = async () => {
+const deleteAll = async (req, res) => {
+  try {
     await Holiday.deleteMany();
-}
+    res.send('All holidays deleted successfully');
+  } catch (err) {
+    res.status(500).send({ error: 'Failed to delete holidays' });
+  }
+};
 
-const holidayRoute =  { postData, findAll, deleteAll }
+const holidayRoute = {
+  postData,
+  findAll,
+  deleteAll
+};
 
 export default holidayRoute;
