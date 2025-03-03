@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import paginate from 'mongoose-paginate-v2';
+
 
 const countrySchema = new mongoose.Schema({
   id: String,
@@ -39,6 +41,8 @@ const holidaySchema = new mongoose.Schema({
   locations: String,
   states: String
 });
+
+holidaySchema.plugin(paginate);
 
 const Holiday = mongoose.model('Holiday', holidaySchema);
 
