@@ -58,7 +58,8 @@ const postData = async () => {
         let page = Number(req.query.page) || 1;
         let limit = Number(req.query.limit) || 15;
 
-        const holidays = await Holiday.paginate({ page, limit });
+        const holidays = await Holiday.paginate({},{ page, limit });
+        // console.log(holidays);
         res.json(holidays);
 
     } catch (err) {
