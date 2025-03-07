@@ -1,6 +1,8 @@
 import Holiday from '../models/holiday.js';
 import mongoose from 'mongoose';
+// import Logger from 'mongodb';
 
+// Logger.level = 'DEBUG';
 mongoose.set("debug", true);
 
 const api = process.env.holidayApi;
@@ -53,12 +55,10 @@ const postData = async () => {
 
         // res.json({ holidays, totalPages, currentPage: page});
 
-
-
         let page = Number(req.query.page) || 1;
         let limit = Number(req.query.limit) || 15;
 
-        const holidays = await Holiday.paginate({}, { page, limit });
+        const holidays = await Holiday.paginate({ page, limit });
         res.json(holidays);
 
     } catch (err) {
