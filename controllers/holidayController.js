@@ -1,4 +1,10 @@
 import Holiday from '../models/holiday.js';
+import mongoose from 'mongoose';
+import Logger from 'mongodb';
+
+Logger.level = 'debug';
+
+// mongoose.set("debug", true);
 
 const api = process.env.holidayApi;
 
@@ -63,7 +69,7 @@ const postData = async () => {
     }
 };
 
-const deleteAll = async (req, res) => {
+export const deleteAll = async (req, res) => {
   try {
     await Holiday.deleteMany();
     res.send('All holidays deleted successfully');
