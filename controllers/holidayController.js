@@ -69,7 +69,7 @@ const postData = async () => {
     }
 };
 
-export const deleteAll = async (req, res) => {
+const deleteAll = async (req, res) => {
   try {
     await Holiday.deleteMany();
     res.send('All holidays deleted successfully');
