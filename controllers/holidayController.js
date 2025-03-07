@@ -1,10 +1,7 @@
 import Holiday from '../models/holiday.js';
 import mongoose from 'mongoose';
-import Logger from 'mongodb';
 
-Logger.level = 'debug';
-
-// mongoose.set("debug", true);
+mongoose.set("debug", true);
 
 const api = process.env.holidayApi;
 
@@ -13,11 +10,11 @@ const postData = async () => {
       const response = await fetch(api);
       const holidayData = await response.json();
       
-      console.log(holidayData);
+      // console.log(holidayData);
   
       const holidays =  holidayData.response.holidays;
   
-      console.log(holidays);
+      // console.log(holidays);
   
       for (let i = 0; i < holidays.length; i++) {
         const holiday = holidays[i];
